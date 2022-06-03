@@ -1,0 +1,3 @@
+Initial tests:
+- Reproduces the spectrum I have in the old B-state files to 1/1e5 precision. There are some small differences, not sure if due to machine precision or what
+- I have to multiply the magnetic hyperfine terms by a factor of Omega (also had to do this with the older version). However, this factor does not appear in the derivation of the matrix elements so not sure what is going on there. The factor is required to get the same sign for matrix elements with opposite Omega. The 3j-symbol tj(J,1,J,-Omega, 0, Omega) has opposite sign for Omega = +/-1 otherwise, and this changes the sign of the overall matrix elements. Turns out multiplying by Omega is correct, see eqn 9.45 in Brown and Carrington. Effectively the h_1 constant changes sign when Omega does.
