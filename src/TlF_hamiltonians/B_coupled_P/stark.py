@@ -9,28 +9,26 @@ from ..B_coupled.stark import d_p
 from ..utils import parity_eigenstate_operator, state_operator
 
 
-@state_operator
 @parity_eigenstate_operator
-def HSx(psi:CoupledBasisState) -> State:
+@state_operator
+def HSx(psi:State) -> State:
     """
     Stark Hamiltonian operator for x-component of electric field
     """
-    return -( d_p(-1,psi) - d_p(+1,psi) ) / np.sqrt(2)
+    return -( d_p(psi,-1) - d_p(psi,+1) ) / np.sqrt(2)
 
-
-@state_operator
 @parity_eigenstate_operator
-def HSy(psi:CoupledBasisState) -> State:
+@state_operator
+def HSy(psi:State) -> State:
     """
     Stark Hamiltonian operator for y-component of electric field
     """
-    return - 1j * ( d_p(-1,psi) + d_p(+1,psi) ) / np.sqrt(2)
+    return - 1j * ( d_p(psi,-1) + d_p(psi,+1) ) / np.sqrt(2)
 
-
-@state_operator
 @parity_eigenstate_operator
-def HSz(psi:CoupledBasisState) -> State:
+@state_operator
+def HSz(psi:State) -> State:
     """
     Stark Hamiltonian for z-component of electric field
     """
-    return - d_p(0,psi)
+    return - d_p(psi,0)

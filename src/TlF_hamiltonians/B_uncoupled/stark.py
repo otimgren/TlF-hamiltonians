@@ -9,7 +9,7 @@ from centrex_TlF.hamiltonian.utils import threej_f
 from ..utils import state_operator
 
 
-def d_p(p:int, psi: UncoupledBasisState, mu_e: float = cst_B.mu_e) -> State:
+def d_p(psi: UncoupledBasisState, p:int,  mu_e: float = cst_B.mu_e) -> State:
     """
     Operates on psi using the pth spherical tensor component of the
     dipole operator.
@@ -52,18 +52,18 @@ def HSx(psi:UncoupledBasisState) -> State:
     """
     Stark Hamiltonian operator for x-component of electric field
     """
-    return -( d_p(-1,psi) - d_p(+1,psi) ) / np.sqrt(2)
+    return -( d_p(psi,-1) - d_p(psi,+1) ) / np.sqrt(2)
 
 @state_operator
 def HSy(psi:UncoupledBasisState) -> State:
     """
     Stark Hamiltonian operator for y-component of electric field
     """
-    return - 1j * ( d_p(-1,psi) + d_p(+1,psi) ) / np.sqrt(2)
+    return - 1j * ( d_p(psi,-1) + d_p(psi,+1) ) / np.sqrt(2)
 
 @state_operator
 def HSz(psi:UncoupledBasisState) -> State:
     """
     Stark Hamiltonian for z-component of electric field
     """
-    return - d_p(0,psi)
+    return - d_p(psi, 0)

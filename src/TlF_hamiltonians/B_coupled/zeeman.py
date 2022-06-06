@@ -9,7 +9,7 @@ from centrex_TlF.hamiltonian.utils import sixj_f, threej_f
 from ..utils import state_operator
 
 
-def mu_p(p:int, psi: CoupledBasisState, mu_B: float = 1.4e6) -> State:
+def mu_p(psi: CoupledBasisState, p:int, mu_B: float = 1.4e6) -> State:
     """
     Operates on psi using the pth spherical tensor component of the magnetic
     dipole operator.
@@ -61,22 +61,22 @@ def mu_p(p:int, psi: CoupledBasisState, mu_B: float = 1.4e6) -> State:
     return State(data)  
 
 @state_operator
-def HZx(psi:CoupledBasisState) -> State:
+def HZx(psi:State) -> State:
     """
     Zeeman Hamiltonian operator for x-component of magnetic field
     """
-    return -( mu_p(-1,psi) - mu_p(+1,psi) ) / np.sqrt(2)
+    return -( mu_p(psi,-1) - mu_p(psi,+1) ) / np.sqrt(2)
 
 @state_operator
-def HZy(psi:CoupledBasisState) -> State:
+def HZy(psi:State) -> State:
     """
     Zeeman Hamiltonian operator for y-component of magnetic field
     """
-    return - 1j * ( mu_p(-1,psi) + mu_p(+1,psi) ) / np.sqrt(2)
+    return - 1j * ( mu_p(psi,-1) + mu_p(psi,+1) ) / np.sqrt(2)
 
 @state_operator
-def HZz(psi:CoupledBasisState) -> State:
+def HZz(psi:State) -> State:
     """
     Zeeman Hamiltonian for z-component of magnetic field
     """
-    return - mu_p(0,psi)
+    return - mu_p(psi,0)

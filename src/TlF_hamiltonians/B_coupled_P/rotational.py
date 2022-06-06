@@ -4,8 +4,6 @@ Operators for making the rotational part of the Hamiltonian are defined here
 from centrex_TlF import CoupledBasisState, State
 from centrex_TlF.constants import constants_B as cst_B
 
-from ..B_coupled import H_mhf_F as H_mhf_F_O
-from ..B_coupled import H_mhf_Tl as H_mhf_Tl_O
 from ..utils import parity_eigenstate_operator, state_operator
 
 

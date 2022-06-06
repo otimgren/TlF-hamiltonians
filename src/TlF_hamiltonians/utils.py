@@ -65,7 +65,7 @@ def parity_eigenstate_operator(H_state: Callable) -> Callable:
 
     return H_P
 
-def find_QN_indices(QN:List[Union[UncoupledBasisState, CoupledBasisState]],
+def find_QN_indices(QN:List[State],
                     **kwargs) -> List[int]:
     """
     Finds the indices of states in QN whose quantum numbers match those provided
@@ -77,7 +77,8 @@ def find_QN_indices(QN:List[Union[UncoupledBasisState, CoupledBasisState]],
         save = True
         for qn, value in kwargs.items():
             # Compare value of quantumn number to desired value
-            if  getattr(basis_state, qn) != value:
+            largest_component = basis_state.find_largest_component()
+            if  getattr(largest_component, qn) != value:
                 # If not the same, move to next state
                 save = False
                 break
